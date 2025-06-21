@@ -151,23 +151,29 @@ a:hover {
 }
 
 .verification-input {
-  width: 50px;
+  width: 60px;
   height: 60px;
-  margin: 0 5px;
+  margin: 0 8px;
   text-align: center;
-  font-size: 24px;
-  border: 2px solid #0071e3;
+  font-size: 28px;
+  border: 2px solid #d2d2d7;
   border-radius: 8px;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   color: #1d1d1f;
   font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .verification-input:focus {
-  border-color: #0062c4;
+  border-color: #0071e3;
   outline: none;
   background-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+.verification-input:not(:placeholder-shown) {
+  border-color: #0071e3;
+  background-color: #f0f8ff;
 }
 
 .section-title {

