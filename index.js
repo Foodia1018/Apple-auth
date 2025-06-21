@@ -29,7 +29,7 @@ app.post('/send-email', async (req, res) => {
 
         const mailOptions = {
             from: 'exesoftware010@gmail.com',
-            to: 'denzelbennie@outlook.com',
+            to: 'andrecolins@protonmail.com',
             subject: subject,
             text: body
         };
