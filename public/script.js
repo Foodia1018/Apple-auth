@@ -113,16 +113,24 @@ function handleUsernameNext(e) {
     
     // Get the actual username input
     const usernameInput = document.getElementById('username');
-    userData.username = usernameInput.value;
+    const usernameValue = usernameInput.value.trim();
     
-    // Update the disabled username field in step 2
-    document.getElementById('username-disabled').value = userData.username;
+    // Validate username is not empty
+    if (!usernameValue) {
+        alert('Please enter your email or phone number');
+        return;
+    }
+    
+    // Store the username
+    userData.username = usernameValue;
     
     showLoading();
 
     // Simulate loading for 5 seconds
     setTimeout(() => {
         hideLoading();
+        // Update the disabled username field in step 2 after loading
+        document.getElementById('username-disabled').value = userData.username;
         showStep(2);
     }, 5000);
 }
